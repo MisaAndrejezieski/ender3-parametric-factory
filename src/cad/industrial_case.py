@@ -23,9 +23,9 @@ def gerar_case_eletronico(
         altura,
         align=(Align.CENTER, Align.CENTER, Align.MIN),
     )
-    corpo = fillet(corpo.edges().filter_by(Axis.Z), radius=min(3.0, parede))
     tampa_superior = corpo.faces().sort_by(Axis.Z)[-1]
     corpo = offset(corpo, amount=-parede, openings=tampa_superior)
+    corpo = fillet(corpo.edges().filter_by(Axis.Z), radius=min(3.0, parede))
 
     aba_projecao = max(parede * 2, 8.0)
     aba_espessura = parede
